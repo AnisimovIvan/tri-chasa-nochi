@@ -32,10 +32,12 @@
 /Applications/Godot.app/Contents/MacOS/Godot --path . 
 ```
 
-Веб-сборка:
+Играть: https://anisimovivan.github.io/tri-chasa-nochi/
+
+Собрать веб-версию и выложить на GitHub Pages:
 
 ```bash
-/Applications/Godot.app/Contents/MacOS/Godot --headless --path . --export-release Web build/web/index.html
+./deploy.sh
 ```
 
 Автотест с ботом и скриншотом: `-- --autoplay=20 --shot=/путь/shot.png`.
