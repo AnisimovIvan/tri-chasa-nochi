@@ -54,6 +54,7 @@ var next_phrase := ""
 var cooldown := 0.0
 ## A tap during the cooldown is remembered and dropped as soon as it ends.
 var drop_queued := false
+var queued_x := 0.0
 
 var score := 0
 var best := 0
@@ -222,6 +223,7 @@ func _drop() -> void:
 		return
 	if cooldown > 0.0:
 		drop_queued = true
+		queued_x = aim_x
 		return
 	# A hair of jitter so identical drops never balance in a perfect column.
 	var x := _held_x() + randf_range(-1.5, 1.5)
@@ -323,6 +325,7 @@ func _process(_delta: float) -> void:
 		cooldown = maxf(cooldown - real * Engine.time_scale, 0.0)
 		if drop_queued and cooldown <= 0.0:
 			drop_queued = false
+			aim_x = queued_x
 			_drop()
 		held_pop = minf(held_pop + real * 5.0, 1.0)
 		_check_danger(real * Engine.time_scale)
